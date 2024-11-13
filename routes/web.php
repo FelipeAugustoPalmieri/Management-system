@@ -6,6 +6,9 @@ use App\Http\Controllers\FlagController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('collaborators/report', [CollaboratorController::class, 'report'])->name('collaborators.report');
+Route::get('collaborators/export', [CollaboratorController::class, 'export'])->name('collaborators.export');
+
 Route::resource('economic-groups', EconomicGroupController::class);
 Route::resource('flags', FlagController::class);
 Route::resource('units', UnitController::class);
