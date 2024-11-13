@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CollaboratorsExport;
 use App\Models\Collaborator;
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CollaboratorController extends Controller
 {
@@ -68,5 +70,44 @@ class CollaboratorController extends Controller
     {
         $collaborator->delete();
         return redirect()->route('collaborators.index')->with('success', 'Colaborador deletado com sucesso.');
+    }
+
+    public function report(Request $request)
+    {
+        $query = Collaborator::with('unit');
+
+        if ($request->filled('unit_id')) {
+            $query->where('unit_id', $request->unit_id);
+        }
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+        if ($request->filled('cpf')) {
+            $query->where('cpf', $request->cpf);
+        }
+
+        $collaborators = $query->get();
+        $units = Unit::all();
+
+        return view('collaborators.report', compact('collaborators', 'units'));
+    }
+
+    public function export(Request $request)
+    {
+        $query = Collaborator::with('unit');
+    
+        if ($request->filled('unit_id')) {
+            $query->where('unit_id', $request->unit_id);
+        }
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+        if ($request->filled('cpf')) {
+            $query->where('cpf', $request->cpf);
+        }
+    
+        $collaborators = $query->get();
+    
+        return Excel::download(new CollaboratorsExport($collaborators), 'colaboradores_filtrados.xlsx');
     }
 }
