@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="text-white mb-4">Editar Colaborador</h2>
+    <h2 class="text-white mb-4">Edit Collaborator</h2>
     <div class="card bg-dark text-white p-4">
         <form action="{{ route('collaborators.update', $collaborator) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="name" class="form-label">Nome</label>
+                <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $collaborator->name) }}" required>
                 @error('name')
                     <div class="text-danger">{{ $message }}</div>
@@ -29,7 +29,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="unit_id" class="form-label">Unidade</label>
+                <label for="unit_id" class="form-label">Unit</label>
                 <select class="form-control" id="unit_id" name="unit_id" required>
                     @foreach($units as $unit)
                         <option value="{{ $unit->id }}" {{ $collaborator->unit_id == $unit->id ? 'selected' : '' }}>{{ $unit->fantasy_name }}</option>
@@ -40,8 +40,8 @@
                 @enderror
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary me-2">Atualizar</button>
-                <a href="{{ route('collaborators.index') }}" class="btn btn-secondary">Voltar</a>
+                <button type="submit" class="btn btn-primary me-2">Update</button>
+                <a href="{{ route('collaborators.index') }}" class="btn btn-secondary">Return</a>
             </div>
         </form>
     </div>

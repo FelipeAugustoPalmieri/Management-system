@@ -32,7 +32,7 @@ class FlagController extends Controller
             'economic_group_id' => $request->input('economic_group_id'),
         ]);
 
-        return redirect()->route('flags.index')->with('success', 'Bandeira criada com sucesso.');
+        return redirect()->route('flags.index')->with('success', 'Flag created successfully.');
     }
 
     public function edit(Flag $flag)
@@ -53,12 +53,12 @@ class FlagController extends Controller
             'economic_group_id' => $request->input('economic_group_id'),
         ]);
 
-        return redirect()->route('flags.index')->with('success', 'Bandeira atualizada com sucesso.');
+        return redirect()->route('flags.index')->with('success', 'Flag updated successfully.');
     }
 
     public function destroy(Flag $flag)
     {
         $flag->delete();
-        return redirect()->route('flags.index')->with('success', 'Bandeira deletada com sucesso.');
+        return redirect()->route('flags.index')->with('success', 'Flag deleted successfully.');
     }
 }

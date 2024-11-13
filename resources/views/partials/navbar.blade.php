@@ -7,22 +7,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('economic-groups.index') }}">Grupos Econômicos</a>
+                    <a class="nav-link" href="{{ route('economic-groups.index') }}">Economic Group</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('flags.index') }}">Bandeiras</a>
+                    <a class="nav-link" href="{{ route('flags.index') }}">Flags</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('units.index') }}">Unidades</a>
+                    <a class="nav-link" href="{{ route('units.index') }}">Units</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('collaborators.index') }}">Colaboradores</a>
+                    <a class="nav-link" href="{{ route('collaborators.index') }}">collaborators</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('audits.index') }}">Logs de Auditoria</a>
+                    <a class="nav-link" href="{{ route('audits.index') }}">Audit Logs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('collaborators.report') }}">Relatório</a>
+                    <a class="nav-link" href="{{ route('collaborators.report') }}">Report</a>
                 </li>
                 @auth
                     <li class="nav-item">

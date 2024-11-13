@@ -28,15 +28,15 @@ class UnitController extends Controller
             'cnpj' => 'required|string|cnpj|unique:units,cnpj',
             'flag_id' => 'required|exists:flags,id',
         ], [
-            'fantasy_name.unique' => 'O nome fantasia já está cadastrado no sistema.',
-            'corporate_name.unique' => 'A razão social já está cadastrada no sistema.',
-            'cnpj.unique' => 'O CNPJ já está cadastrado no sistema.',
-            'cnpj.cnpj' => 'O CNPJ informado não é válido.',
+            'fantasy_name.unique' => 'The fantasy name is already registered in the system.',
+            'corporate_name.unique' => 'The company name is already registered in the system.',
+            'cnpj.unique' => 'The CNPJ is already registered in the system.',
+            'cnpj.cnpj' => 'The CNPJ entered is not valid.',
         ]);
 
         Unit::create($request->all());
 
-        return redirect()->route('units.index')->with('success', 'Unidade criada com sucesso.');
+        return redirect()->route('units.index')->with('success', 'Unit created successfully.');
     }
 
     public function edit(Unit $unit)
@@ -53,20 +53,20 @@ class UnitController extends Controller
             'cnpj' => 'required|string|cnpj|unique:units,cnpj,' . $unit->id,
             'flag_id' => 'required|exists:flags,id',
         ], [
-            'fantasy_name.unique' => 'O nome fantasia já está cadastrado no sistema.',
-            'corporate_name.unique' => 'A razão social já está cadastrada no sistema.',
-            'cnpj.unique' => 'O CNPJ já está cadastrado no sistema.',
-            'cnpj.cnpj' => 'O CNPJ informado não é válido.',
+            'fantasy_name.unique' => 'The fantasy name is already registered in the system.',
+            'corporate_name.unique' => 'The company name is already registered in the system.',
+            'cnpj.unique' => 'The CNPJ is already registered in the system.',
+            'cnpj.cnpj' => 'The CNPJ entered is not valid.',
         ]);
 
         $unit->update($request->all());
 
-        return redirect()->route('units.index')->with('success', 'Unidade atualizada com sucesso.');
+        return redirect()->route('units.index')->with('success', 'Unit updated successfully.');
     }
 
     public function destroy(Unit $unit)
     {
         $unit->delete();
-        return redirect()->route('units.index')->with('success', 'Unidade deletada com sucesso.');
+        return redirect()->route('units.index')->with('success', 'Unit deleted successfully.');
     }
 }

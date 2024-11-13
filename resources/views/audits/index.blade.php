@@ -19,7 +19,7 @@
                 @forelse ($audits as $audit)
                     <tr>
                         <td>{{ $audit->id }}</td>
-                        <td>{{ $audit->user ? $audit->user->name : 'Desconhecido' }}</td>
+                        <td>{{ $audit->user ? $audit->user->name : 'Unknown' }}</td>
                         <td class="text-capitalize">{{ $audit->event }}</td>
                         <td>{{ class_basename($audit->auditable_type) }} (ID: {{ $audit->auditable_id }})</td>
                         <td>{{ $audit->created_at->format('d/m/Y H:i:s') }}</td>

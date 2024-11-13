@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EconomicGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EconomicGroupController extends Controller
 {
@@ -23,14 +24,15 @@ class EconomicGroupController extends Controller
         $request->validate([
             'name' => 'required|string|max:100|unique:economic_groups,name',
         ], [
-            'name.unique' => 'O nome já existe. Por favor, escolha um nome diferente.',
+            'name.unique' => 'The name already exists. Please choose a different name.',
         ]);
 
+        
         EconomicGroup::create([
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('economic-groups.index')->with('success', 'Grupo econômico criado com sucesso.');
+        return redirect()->route('economic-groups.index')->with('success', 'Successfully created economic group.');
     }
 
     public function edit(EconomicGroup $economicGroup)
@@ -43,19 +45,19 @@ class EconomicGroupController extends Controller
         $request->validate([
             'name' => 'required|string|max:100|unique:economic_groups,name,' . $economicGroup->id,
         ], [
-            'name.unique' => 'O nome já existe. Por favor, escolha um nome diferente.',
+            'name.unique' => 'The name already exists. Please choose a different name.',
         ]);
 
         $economicGroup->update([
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('economic-groups.index')->with('success', 'Grupo econômico atualizado com sucesso.');
+        return redirect()->route('economic-groups.index')->with('success', 'Successfully updated economic group.');
     }
 
     public function destroy(EconomicGroup $economicGroup)
     {
         $economicGroup->delete();
-        return redirect()->route('economic-groups.index')->with('success', 'Grupo econômico deletado com sucesso.');
+        return redirect()->route('economic-groups.index')->with('success', 'Economic group successfully deleted.');
     }
 }

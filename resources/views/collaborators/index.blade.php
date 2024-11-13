@@ -3,8 +3,8 @@
 @section('content')
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="text-white">Lista de Colaboradores</h2>
-        <a href="{{ route('collaborators.create') }}" class="btn btn-success">Criar Novo Colaborador</a>
+        <h2 class="text-white">List of Contributors</h2>
+        <a href="{{ route('collaborators.create') }}" class="btn btn-success">Create New Collaborator</a>
     </div>
 
     @if (session('success'))
@@ -19,12 +19,12 @@
             <thead class="table-secondary">
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>CPF</th>
-                    <th>Unidade</th>
-                    <th>Data de Criação</th>
-                    <th>Ações</th>
+                    <th>Unit</th>
+                    <th>Creation Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,17 +37,17 @@
                         <td>{{ $collaborator->unit->fantasy_name }}</td>
                         <td>{{ $collaborator->created_at->format('d/m/Y') }}</td>
                         <td class="d-flex justify-content-center">
-                            <a href="{{ route('collaborators.edit', $collaborator) }}" class="btn btn-sm btn-warning me-2">Editar</a>
+                            <a href="{{ route('collaborators.edit', $collaborator) }}" class="btn btn-sm btn-warning me-2">Edit</a>
                             <form action="{{ route('collaborators.destroy', $collaborator) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar?')" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-muted">Nenhum colaborador encontrado.</td>
+                        <td colspan="7" class="text-muted">No collaborators found.</td>
                     </tr>
                 @endforelse
             </tbody>

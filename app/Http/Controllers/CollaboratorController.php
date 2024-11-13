@@ -30,15 +30,15 @@ class CollaboratorController extends Controller
             'cpf' => 'required|string|size:14|unique:collaborators,cpf|cpf',
             'unit_id' => 'required|exists:units,id',
         ], [
-            'name.unique' => 'O Nome já está cadastrado no sistema.',
-            'email.unique' => 'O email já está cadastrado no sistema.',
-            'cpf.unique' => 'O CPF já está cadastrado no sistema.',
-            'cpf.cpf' => 'O CPF informado não é válido.',
+            'name.unique' => 'The name is already registered in the system.',
+            'email.unique' => 'The email is already registered in the system.',
+            'cpf.unique' => 'The CPF is already registered in the system.',
+            'cpf.cpf' => 'The CPF entered is not valid.',
         ]);
 
         Collaborator::create($request->all());
 
-        return redirect()->route('collaborators.index')->with('success', 'Colaborador criado com sucesso.');
+        return redirect()->route('collaborators.index')->with('success', 'Contributor created successfully.');
     }
 
     public function edit(Collaborator $collaborator)
@@ -55,21 +55,21 @@ class CollaboratorController extends Controller
             'cpf' => 'required|string|size:14|unique:collaborators,cpf,' . $collaborator->id . '|cpf',
             'unit_id' => 'required|exists:units,id',
         ], [
-            'name.unique' => 'O Nome já está cadastrado no sistema.',
-            'email.unique' => 'O email já está cadastrado no sistema.',
-            'cpf.unique' => 'O CPF já está cadastrado no sistema.',
-            'cpf.cpf' => 'O CPF informado não é válido.',
+            'name.unique' => 'The name is already registered in the system.',
+            'email.unique' => 'The email is already registered in the system.',
+            'cpf.unique' => 'The CPF is already registered in the system.',
+            'cpf.cpf' => 'The CPF entered is not valid.',
         ]);
 
         $collaborator->update($request->all());
 
-        return redirect()->route('collaborators.index')->with('success', 'Colaborador atualizado com sucesso.');
+        return redirect()->route('collaborators.index')->with('success', 'Collaborator updated successfully.');
     }
 
     public function destroy(Collaborator $collaborator)
     {
         $collaborator->delete();
-        return redirect()->route('collaborators.index')->with('success', 'Colaborador deletado com sucesso.');
+        return redirect()->route('collaborators.index')->with('success', 'Collaborator deleted successfully.');
     }
 
     public function report(Request $request)
@@ -85,6 +85,12 @@ class CollaboratorController extends Controller
         if ($request->filled('cpf')) {
             $query->where('cpf', $request->cpf);
         }
+        if ($request->filled('email')) {
+            $query->where('email', 'like', '%' . $request->email . '%');
+        }
+        if ($request->filled('created_at')) {
+            $query->whereDate('created_at', $request->created_at);
+        }
 
         $collaborators = $query->get();
         $units = Unit::all();
@@ -95,7 +101,7 @@ class CollaboratorController extends Controller
     public function export(Request $request)
     {
         $query = Collaborator::with('unit');
-    
+
         if ($request->filled('unit_id')) {
             $query->where('unit_id', $request->unit_id);
         }
@@ -105,9 +111,15 @@ class CollaboratorController extends Controller
         if ($request->filled('cpf')) {
             $query->where('cpf', $request->cpf);
         }
-    
+        if ($request->filled('email')) {
+            $query->where('email', 'like', '%' . $request->email . '%');
+        }
+        if ($request->filled('created_at')) {
+            $query->whereDate('created_at', $request->created_at);
+        }
+
         $collaborators = $query->get();
-    
+
         return Excel::download(new CollaboratorsExport($collaborators), 'colaboradores_filtrados.xlsx');
     }
 }

@@ -1,66 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este é um sistema de gestão desenvolvido como parte de um teste prático para desenvolvedor Full Stack. O sistema permite a administração de grupos econômicos, bandeiras, unidades e colaboradores, além de gerar relatórios e registrar logs de auditoria.
 
-## About Laravel
+## Tecnologias Utilizadas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Laravel 11.30.0**: Framework PHP para desenvolvimento web.
+- **MySQL**: Banco de dados relacional.
+- **Bootstrap 5.3.3**: Framework front-end para design responsivo.
+- **Maatwebsite Excel**: Exportação de relatórios em Excel.
+- **OwenIt\Auditing**: Registro de logs de auditoria.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionalidades
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Autenticação de Usuários**: Registro, login e logout.
+2. **CRUD de Grupos Econômicos**: Criar, ler, atualizar e excluir grupos econômicos.
+3. **CRUD de Bandeiras**: Associadas a grupos econômicos.
+4. **CRUD de Unidades**: Associadas a bandeiras.
+5. **CRUD de Colaboradores**: Associados a unidades.
+6. **Relatórios de Colaboradores**: Com filtros e exportação em Excel.
+7. **Logs de Auditoria**: Registro das alterações realizadas nas entidades.
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Passos para Instalação
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Clone o Repositório**
+    ```bash
+    git clone https://github.com/seu-usuario/management-system.git
+    cd management-system
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Instale as Dependências**
+    ```bash
+    composer install
+    npm install && npm run build
+    ```
 
-## Laravel Sponsors
+3. **Configure o Arquivo `.env`**
+    Copie o arquivo `.env.example` para `.env` e edite as variáveis de ambiente, como as credenciais de banco de dados.
+    ```bash
+    cp .env.example .env
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. **Gere a Chave da Aplicação**
+    ```bash
+    php artisan key:generate
+    ```
 
-### Premium Partners
+5. **Configure o Banco de Dados**
+    Crie um banco de dados MySQL e atualize as credenciais no arquivo `.env`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```
 
-## Contributing
+7. **Inicie o Servidor de Desenvolvimento**
+    ```bash
+    php artisan serve
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+8. **Acesse o Sistema**
+    Abra seu navegador e acesse [http://localhost:8000](http://localhost:8000).
 
-## Code of Conduct
+## Uso
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Autenticação
 
-## Security Vulnerabilities
+- Acesse `/register` para criar uma nova conta.
+- Acesse `/login` para entrar com uma conta existente.
+- Use `/logout` para sair do sistema.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Navegação
 
-## License
+- **Dashboard**: A página inicial após o login.
+- **Gerencie grupos econômicos, bandeiras, unidades e colaboradores** através das rotas correspondentes.
+- **Gere relatórios de colaboradores** com filtros de nome, CPF, e-mail, unidade e data de criação.
+- **Acesse a página de logs de auditoria** para visualizar as alterações feitas nas entidades.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Estrutura de Pastas
+
+- **app/Http/Controllers**: Controladores da aplicação.
+- **app/Models**: Modelos das entidades.
+- **resources/views**: Views Blade para o front-end.
+- **routes/web.php**: Definições de rotas da aplicação.
+
+## Auditoria
+
+O pacote `OwenIt\Auditing` registra automaticamente as alterações nas entidades do sistema. As logs podem ser visualizadas na página de auditoria acessível após o login.
+
+## Requisitos para Produção
+
+- **PHP >= 8.3**
+- **Composer**
+- **MySQL**
+
+
+---

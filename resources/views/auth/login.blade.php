@@ -20,10 +20,10 @@
                     <div class="text-danger mt-1">{{ $errors->first('password') }}</div>
                 @endif
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-3">Entrar</button>
+            <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
         </form>
         <div class="text-center">
-            <p>Não tem uma conta? <a href="{{ route('register') }}" class="btn btn-outline-secondary">Registrar</a></p>
+            <p>Don't have an account? <a href="{{ route('register') }}" class="btn btn-outline-secondary">Registrar</a></p>
         </div>
     </div>
 </div>
